@@ -31,7 +31,8 @@ def check_project():
         inputs.pop(0)
         skills_required -= 1
 
-
+def update_skill(person, skill):
+    skillsDict[skill][person]+=1
     
 
 # Input
@@ -53,7 +54,6 @@ while n_people > 0:
     check_person()
     n_people -= 1
 
-print(skillsDict)
 while n_projects > 0:
     check_project()
     n_projects -= 1
