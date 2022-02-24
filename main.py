@@ -6,7 +6,10 @@ input = sys.stdin.readline
 inputs = []
 skillsDict = {}
 result = {}
+projects = {}
 
+def update_skill(person, skill):
+    skillsDict[skill][person]+=1
 
 def check_person():
     name, n_skills = inputs[0].split(" ")  # get name and number of skills
@@ -22,18 +25,23 @@ def check_person():
 def check_project():
     name, Di, Si, Bi, Ri = inputs[0].split(" ")
     skills_required = int(Ri)
+    roles = []
     inputs.pop(0)
 
     while skills_required > 0:
         skill, level = inputs[0].split(" ")
         skill_level = (skill, level)
-
+        roles.append(skill_level)
         inputs.pop(0)
         skills_required -= 1
 
-def update_skill(person, skill):
-    skillsDict[skill][person]+=1
-    
+    projects[name] = {
+        "Di": Di,
+        "Si": Si,
+        "Bi": Bi,
+        "roles": roles
+    }
+
 
 # Input
 while True:
