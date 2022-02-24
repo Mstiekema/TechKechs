@@ -4,19 +4,19 @@ input = sys.stdin.readline
 
 # Global vars
 inputs = []
-personDict = {}
+skillsDict = {}
 result = {}
 
 
 def check_person():
-    skillList = []
     name, n_skills = inputs[0].split(" ")  # get name and number of skills
     inputs.pop(0)
     for i in range(int(n_skills)):  # for each skill
-        skillList.append(inputs[0].split(" "))  # add it to the persons skill list
+        skill, level = inputs[0].split(" ")
+        if skill not in skillsDict.keys():
+            skillsDict[skill] = {}
+        skillsDict[skill][name] = int(level)    
         inputs.pop(0)
-    personDict[name] = skillList
-    print(name, personDict[name])
 
 
 def check_project():
@@ -31,6 +31,8 @@ def check_project():
         inputs.pop(0)
         skills_required -= 1
 
+
+    
 
 # Input
 while True:
@@ -51,7 +53,7 @@ while n_people > 0:
     check_person()
     n_people -= 1
 
-
+print(skillsDict)
 while n_projects > 0:
     check_project()
     n_projects -= 1
